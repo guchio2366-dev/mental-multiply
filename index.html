@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="2桁×2桁の掛け算をランダムに10問。時間を測って、何度でも暗算を練習できます。">
+  <title>暗算ドリル | 2桁 × 2桁</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTgiIGZpbGw9IiMyNDU0NDgiLz48cGF0aCBkPSJtMjIgMjIgMjAgMjBtMC0yMEwyMiA0MiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPgo=" type="image/svg+xml">
+  <style>@charset "UTF-8";
+:root{color-scheme:light;--paper:#f6f5f0;--card:#fffefa;--ink:#252c29;--muted:#717870;--green:#245448;--green-light:#e9f0e9;--border:#dedfd6;--red:#a34636;--red-light:#f9ede7;font-family:Inter,"Noto Sans JP","Yu Gothic UI","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}button,input{font:inherit}button{cursor:pointer}button,input{-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid #609181;outline-offset:5px}[hidden]{display:none!important}.shell{max-width:1056px;min-height:100svh;margin:auto;padding:0 44px;display:flex;flex-direction:column}.site-header{height:101px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:700;letter-spacing:.05em}.brand-icon{display:grid;place-items:center;width:33px;height:33px;background:var(--green);border-radius:9px;color:#fff;font-size:28px;line-height:1;font-weight:400}.header-tag{font-size:12px;border:1px solid var(--border);padding:7px 12px;border-radius:30px;color:#5e685f;letter-spacing:.04em}main{flex:1}.welcome{max-width:600px;margin:62px auto 58px;text-align:center}.eyebrow{font-size:11px;font-weight:650;letter-spacing:.18em;color:var(--green);line-height:1.6;margin:0;display:flex;align-items:center;gap:9px}.welcome>.eyebrow{justify-content:center}.status-dot{width:6px;height:6px;background:var(--green);border-radius:50%}h1,h2,p{margin-top:0}.welcome h1{font-size:clamp(36px,5.7vw,52px);line-height:1.45;letter-spacing:.065em;font-weight:650;margin:22px 0 17px}.intro{font-size:14px;line-height:1.9;color:var(--muted);letter-spacing:.04em}.welcome-equation{margin:30px auto 22px;display:flex;align-items:center;justify-content:center;gap:22px;font-family:ui-sans-serif,system-ui,sans-serif;font-size:54px;font-weight:500;letter-spacing:-.035em;font-variant-numeric:tabular-nums}.operator{color:#8d988f;font-weight:300;font-size:.7em}.question-mark{display:grid;place-items:center;width:73px;height:80px;border-radius:13px;background:#e8ede5;color:var(--green);font-size:49px;transform:rotate(5deg)}.welcome-facts{display:flex;justify-content:center;align-items:center;gap:0;margin:28px 0;color:var(--muted);font-size:12px}.welcome-facts span{padding:0 18px;line-height:18px}.welcome-facts span+span{border-left:1px solid #d5d8cd}.welcome-facts strong{font-size:15px;font-weight:600;color:var(--ink)}.primary-button{min-height:57px;display:flex;width:100%;align-items:center;justify-content:center;gap:24px;border:0;border-radius:11px;background:var(--green);color:#fff;font-size:14px;font-weight:600;letter-spacing:.05em;padding:16px 22px;transition:background .15s,transform .15s;touch-action:manipulation}.primary-button:hover{background:#1b4238}.primary-button:active{transform:translateY(1px)}.primary-button>span{font-size:22px;line-height:1;font-weight:400}.welcome>.primary-button{max-width:360px;margin:auto}.quiet-note{font-size:11px;color:var(--muted);text-align:center;margin:13px 0 0;line-height:1.8;letter-spacing:.03em}footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding:23px 0 27px;font-size:10px;letter-spacing:.08em;color:#7d857b}.footer-symbol{font-family:ui-monospace,monospace;letter-spacing:.04em}.exercise{max-width:588px;margin:42px auto 42px}.session-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.round-label{font-size:11px;color:var(--muted)}.dashboard{display:flex;justify-content:space-between;align-items:flex-end}.metric-label{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.04em;margin:0 0 5px;display:flex;align-items:center;gap:5px}.problem-counter{margin:0;font-size:16px;color:#899085;line-height:1.3;font-variant-numeric:tabular-nums}.problem-counter strong{font-size:32px;color:var(--ink);font-weight:500}.timer-block{text-align:right}.timer-block .metric-label{justify-content:flex-end}.timer{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:30px;line-height:1.4;margin:0;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.timer>span{font-size:19px;color:#828c80}.progress{display:flex;gap:6px;margin:17px 0 25px}.progress-segment{flex:1;height:4px;border-radius:6px;background:#dde1d7;transition:background .2s}.progress-segment.current{background:#91aa93}.progress-segment.correct{background:var(--green)}.progress-segment.incorrect{background:#bf816c}.question-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:31px 48px 32px;box-shadow:0 6px 20px #27362704;text-align:center}.card-label{font-size:12px;color:var(--muted);letter-spacing:.08em;margin-bottom:16px}.equation{display:flex;align-items:center;justify-content:center;gap:30px;font-family:ui-sans-serif,system-ui,sans-serif;font-size:clamp(56px,7vw,78px);font-weight:500;letter-spacing:-.035em;line-height:1.2;font-variant-numeric:tabular-nums;margin:0 0 27px}.equation .operator{font-size:.6em}.answer-wrap{display:flex;align-items:center;border:1.5px solid #cbd2c5;border-radius:12px;background:#fff;min-height:72px;transition:box-shadow .15s,border-color .15s}.answer-wrap:focus-within{border-color:var(--green);box-shadow:0 0 0 3px #2454480e}.input-equals{margin-left:23px;font-size:26px;color:#899386;font-weight:300}.answer-wrap input{width:100%;min-width:0;outline:0;border:0;background:none;padding:15px 30px 15px 10px;text-align:center;color:var(--ink);font-size:30px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.3;letter-spacing:.07em;border-radius:12px}.answer-wrap input::placeholder{font-size:16px;font-weight:400;color:#93998f;letter-spacing:.06em}.answer-wrap.is-correct{border-color:#8bae9a;background:#f6faf5}.answer-wrap.is-incorrect{border-color:#c98e7e;background:#fdf8f5}.input-error{font-size:11px;color:var(--red);margin:0;line-height:1.7}.input-error:not(:empty){padding-top:8px}.feedback{height:84px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:left;font-size:14px}.feedback.positive{color:var(--green)}.feedback.negative{color:var(--red)}.feedback-icon{font-size:20px;width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:var(--green-light);flex:none}.negative .feedback-icon{background:var(--red-light);font-size:25px}.feedback strong{font-weight:650}.feedback-detail{display:block;font-size:12px;color:var(--muted);margin-top:3px;letter-spacing:.02em}.feedback-detail b{font-weight:650;color:var(--ink)}.keyboard-hint{font-size:11px;color:var(--muted);text-align:center;display:flex;gap:8px;align-items:center;justify-content:center;margin:20px 0 0}kbd{border:1px solid #d9dcd2;border-bottom-width:2px;border-radius:5px;font-family:inherit;font-size:10px;padding:3px 6px;background:#fdfcf8;color:#707b6c;line-height:1.2}.timer-note{font-size:10px;color:var(--muted);text-align:center;margin:11px 0 0}.results{max-width:588px;margin:40px auto 54px}.result-heading{text-align:center}.complete-icon{display:grid;place-items:center;border:1px solid #c4d4c4;background:var(--green-light);color:var(--green);border-radius:50%;width:44px;height:44px;font-size:23px;margin:0 auto 14px}.result-heading>.eyebrow{justify-content:center}.result-heading h1{font-size:28px;font-weight:600;letter-spacing:.04em;margin:13px 0 9px}.result-heading .intro{font-size:12px;margin-bottom:24px}.result-card{display:grid;grid-template-columns:1.15fr 1fr;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:21px}.accuracy-block{text-align:center}.accuracy-block .metric-label{justify-content:center}.accuracy{font-family:ui-sans-serif,system-ui,sans-serif;font-size:76px;line-height:1.2;font-weight:500;letter-spacing:-.065em;color:var(--green);margin:5px 0}.percent{font-size:24px;margin-left:5px;font-weight:400;letter-spacing:0}.correct-count{font-size:12px;color:var(--muted);margin:0}.result-times{border-left:1px solid var(--border);padding-left:34px;display:flex;flex-direction:column;justify-content:center;gap:21px}.result-time{font-size:26px;font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-variant-numeric:tabular-nums;margin:0;letter-spacing:-.04em}.result-time.small{font-size:21px}.review-heading{display:flex;align-items:center;justify-content:space-between;margin:35px 0 12px}.review-heading h2{font-size:13px;font-weight:600;margin:0;letter-spacing:.03em}.review-heading>span{font-size:11px;color:var(--muted)}.table-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card)}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}thead{background:#eeeee6}thead th{font-size:10px;font-weight:500;color:var(--muted);text-align:right;padding:12px 10px;white-space:nowrap}thead th:nth-child(1){text-align:center}thead th:nth-child(2){text-align:left}thead th:last-child{width:46px}tbody td,tbody th{font-size:13px;font-weight:500;padding:12px 10px;border-top:1px solid #ebede4;text-align:right}tbody th{text-align:left;white-space:nowrap}td.row-number{text-align:center;color:#92998d;font-size:10px;width:44px}.table-times{color:#929a8e;margin:0 3px}.correct-answer{color:var(--green)}tbody .missed{background:#fcf6f1}.missed td:nth-child(3){color:var(--red)}.result-status{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:13px}.result-status.good{background:var(--green-light);color:var(--green)}.result-status.bad{background:var(--red-light);color:var(--red);font-size:18px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:760px) and (min-height:850px){.welcome{margin-top:80px}.exercise{margin-top:58px}}
+@media(max-width:600px){.shell{padding:0 22px}.site-header{height:78px}.brand{font-size:15px}.brand-icon{width:30px;height:30px}.header-tag{font-size:10px}.welcome{margin:43px auto}.welcome h1{font-size:38px}.welcome-equation{font-size:43px;gap:15px;margin:28px auto}.question-mark{width:59px;height:66px;font-size:40px}.welcome-facts{font-size:11px}.welcome-facts span{padding:0 10px}.welcome>.primary-button{max-width:none}.exercise{margin:30px auto}.session-heading{margin-bottom:20px}.progress{gap:4px;margin-bottom:20px}.question-card{padding:26px 22px;border-radius:16px}.equation{font-size:66px;gap:24px;margin-bottom:25px}.answer-wrap{min-height:65px}.answer-wrap input{font-size:29px;padding-top:13px;padding-bottom:13px}.feedback{height:78px}.primary-button{font-size:13px;min-height:55px}.results{margin-top:30px}.result-heading h1{font-size:25px}.result-card{padding:24px 14px}.accuracy{font-size:65px}.result-times{padding-left:22px}.result-time{font-size:23px}.result-time.small{font-size:19px}footer{font-size:9px;padding:20px 0;letter-spacing:.02em}.footer-symbol{font-size:9px}thead th{font-size:9px;padding:11px 7px}tbody td,tbody th{font-size:12px;padding:11px 7px}.table-times{margin:0 1px}thead th:last-child{width:35px}td.row-number{width:33px}.result-status{width:20px;height:20px}.timer{font-size:28px}}
+@media(max-width:355px){.shell{padding:0 16px}.welcome-facts span{padding:0 8px}.welcome-equation{gap:12px;font-size:39px}.question-card{padding:24px 16px}.equation{font-size:58px}.result-times{padding-left:15px}.result-time{font-size:21px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+  
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <div class="brand"><span class="brand-icon" aria-hidden="true">×</span><span>暗算ドリル</span></div>
+      <span class="header-tag">2桁 × 2桁</span>
+    </header>
+
+    <main>
+      <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+        <p class="eyebrow"><span class="status-dot"></span> DAILY MENTAL WORKOUT</p>
+        <h1 id="welcome-title">頭の中で、<br>答えをつくる。</h1>
+        <p class="intro">ひと息ついて、10問の暗算。<br>自分のペースで、何度でも。</p>
+        <div class="welcome-equation" aria-hidden="true"><span>24</span><span class="operator">×</span><span>36</span><span class="operator equals">=</span><span class="question-mark">?</span></div>
+        <div class="welcome-facts"><span><strong>10</strong> 問 / セット</span><span>ランダム出題</span><span>時間制限なし</span></div>
+        <button id="start" class="primary-button">10問の練習をはじめる <span aria-hidden="true">→</span></button>
+        <p class="quiet-note">開始すると、タイマーが動きます。</p>
+      </section>
+
+      <section id="exercise" class="exercise" hidden aria-label="暗算の練習">
+        <div class="session-heading"><span class="eyebrow">PRACTICE</span><span class="round-label">2桁 × 2桁 ・ 10問</span></div>
+        <div class="dashboard"><div><span class="metric-label">問題</span><p class="problem-counter"><strong id="question-number">01</strong><span> / 10</span></p></div><div class="timer-block"><span class="metric-label"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M9 2h6m-3 0v3m0 8V8m5-2 2-2"/></svg> 経過時間</span><p id="timer" class="timer" aria-label="経過時間">00:00<span>.0</span></p></div></div>
+        <div id="progress" class="progress" role="progressbar" aria-label="回答済みの問題" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"></div>
+        <div class="question-card">
+          <p class="card-label">この答えは？</p>
+          <h1 id="question" class="equation" aria-live="polite"></h1>
+          <form id="answer-form" novalidate>
+            <label class="sr-only" for="answer">答え</label>
+            <div id="answer-wrap" class="answer-wrap"><span class="input-equals" aria-hidden="true">=</span><input id="answer" name="answer" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" maxlength="8" placeholder="答えを入力" aria-describedby="input-error feedback"></div>
+            <p id="input-error" class="input-error" aria-live="polite"></p>
+            <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true"></div>
+            <button id="submit" class="primary-button" type="submit">答え合わせ <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
+        <p class="keyboard-hint"><kbd>Enter</kbd> で答え合わせ・次の問題へ</p>
+        <p class="timer-note">正誤の確認中もタイマーは進みます。</p>
+      </section>
+
+      <section id="results" class="results" hidden aria-labelledby="results-title">
+        <div class="result-heading"><span class="complete-icon" aria-hidden="true">✓</span><p class="eyebrow">SET COMPLETE</p><h1 id="results-title">10問、おつかれさま。</h1><p id="result-message" class="intro"></p></div>
+        <div class="result-card"><div class="accuracy-block"><p class="metric-label">正答率</p><p class="accuracy"><span id="accuracy">100</span><span class="percent">%</span></p><p id="correct-count" class="correct-count">10問中 10問正解</p></div><div class="result-times"><div><p class="metric-label">合計タイム</p><p id="final-time" class="result-time"></p></div><div><p class="metric-label">1問あたり</p><p id="average-time" class="result-time small"></p></div></div></div>
+        <button id="restart" class="primary-button">もう10問、練習する <span aria-hidden="true">↗</span></button>
+        <p class="quiet-note">新しい問題で、すぐにスタート。</p>
+        <div class="review-heading"><h2>今回の振り返り</h2><span>全10問</span></div>
+        <div class="table-wrap"><table><thead><tr><th scope="col">No.</th><th scope="col">問題</th><th scope="col">あなたの答え</th><th scope="col">正解</th><th scope="col"><span class="sr-only">判定</span></th></tr></thead><tbody id="review-body"></tbody></table></div>
+      </section>
+    </main>
+    <footer><span>少しずつ、考える力を。</span><span class="footer-symbol" aria-hidden="true">10 × 10 → 99 × 99</span></footer>
+  </div>
+<script>(() => {
+  'use strict';
+  const TOTAL = 10;
+  const $ = (id) => document.getElementById(id);
+  const ui = Object.fromEntries(['welcome','exercise','results','start','restart','question-number','timer','progress','question','answer-form','answer','answer-wrap','input-error','feedback','submit','accuracy','correct-count','final-time','average-time','result-message','review-body'].map(id => [id, $(id)]));
+  let phase = 'welcome';
+  let questions = [];
+  let answers = [];
+  let index = 0;
+  let startedAt = 0;
+  let elapsed = 0;
+  let interval = null;
+  let lastActionAt = -Infinity;
+
+  function timeParts(ms) {
+    const tenths = Math.floor(Math.max(0, ms) / 100);
+    return {main: `${String(Math.floor(tenths / 600)).padStart(2, '0')}:${String(Math.floor(tenths / 10) % 60).padStart(2, '0')}`, decimal: tenths % 10};
+  }
+  function formattedTime(ms) {
+    const t = timeParts(ms);
+    return `${t.main}.${t.decimal}`;
+  }
+  function tick() {
+    elapsed = Math.max(0, Date.now() - startedAt);
+    const t = timeParts(elapsed);
+    ui.timer.innerHTML = `${t.main}<span>.${t.decimal}</span>`;
+  }
+  function stopTimer() {
+    if (interval !== null) clearInterval(interval);
+    interval = null;
+  }
+  function generateQuestions() {
+    const pairs = [];
+    // Sample without replacement, including mirrored pairs as the same problem.
+    for (let a = 10; a <= 99; a++) {
+      for (let b = a; b <= 99; b++) pairs.push([a, b]);
+    }
+    for (let i = 0; i < TOTAL; i++) {
+      const j = i + Math.floor(Math.random() * (pairs.length - i));
+      [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
+    }
+    return pairs.slice(0, TOTAL).map(([a, b]) => Math.random() < 0.5 ? {a, b} : {a: b, b: a});
+  }
+  function showScreen(screen) {
+    for (const key of ['welcome', 'exercise', 'results']) ui[key].hidden = key !== screen;
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  function renderProgress() {
+    ui.progress.innerHTML = Array.from({length: TOTAL}, (_, i) => {
+      const answer = answers[i];
+      const status = answer ? (answer.correct ? 'correct' : 'incorrect') : (i === index ? 'current' : '');
+      return `<span class="progress-segment ${status}"></span>`;
+    }).join('');
+    ui.progress.setAttribute('aria-valuenow', String(answers.length));
+    ui.progress.setAttribute('aria-valuetext', `${TOTAL}問中${answers.length}問回答済み`);
+  }
+  function renderQuestion() {
+    const q = questions[index];
+    ui['question-number'].textContent = String(index + 1).padStart(2, '0');
+    ui.question.innerHTML = `<span>${q.a}</span><span class="operator">×</span><span>${q.b}</span>`;
+    ui.answer.value = '';
+    ui.answer.readOnly = false;
+    ui.answer.removeAttribute('aria-invalid');
+    ui['answer-wrap'].className = 'answer-wrap';
+    ui['input-error'].textContent = '';
+    ui.feedback.textContent = '';
+    ui.feedback.className = 'feedback';
+    ui.submit.innerHTML = '答え合わせ <span aria-hidden="true">→</span>';
+    renderProgress();
+    ui.answer.focus({preventScroll: true});
+  }
+  function start() {
+    stopTimer();
+    questions = generateQuestions();
+    answers = [];
+    index = 0;
+    elapsed = 0;
+    phase = 'answering';
+    lastActionAt = performance.now();
+    showScreen('exercise');
+    renderQuestion();
+    startedAt = Date.now();
+    tick();
+    interval = setInterval(tick, 100);
+  }
+  function submit() {
+    if (phase !== 'answering') return;
+    const normalized = ui.answer.value.normalize('NFKC').trim();
+    if (!/^\d{1,8}$/.test(normalized)) {
+      ui['input-error'].textContent = '答えを数字で入力してください。';
+      ui.answer.setAttribute('aria-invalid', 'true');
+      ui.answer.focus({preventScroll: true});
+      return;
+    }
+    const q = questions[index];
+    const value = Number(normalized);
+    const correct = value === q.a * q.b;
+    answers.push({...q, value, correct});
+    phase = 'checked';
+    if (index === TOTAL - 1) { tick(); stopTimer(); }
+    ui.answer.value = String(value);
+    ui.answer.readOnly = true;
+    ui.answer.removeAttribute('aria-invalid');
+    ui['input-error'].textContent = '';
+    ui['answer-wrap'].className = `answer-wrap ${correct ? 'is-correct' : 'is-incorrect'}`;
+    ui.feedback.className = `feedback ${correct ? 'positive' : 'negative'}`;
+    ui.feedback.innerHTML = `<span class="feedback-icon" aria-hidden="true">${correct ? '✓' : '×'}</span><span><strong>${correct ? '正解！' : '不正解'}</strong><span class="feedback-detail">${q.a} × ${q.b} = <b>${q.a * q.b}</b></span></span>`;
+    ui.submit.innerHTML = `${index === TOTAL - 1 ? '結果を見る' : '次の問題へ'} <span aria-hidden="true">→</span>`;
+    renderProgress();
+    // Keep the numeric keyboard open between questions; Enter can advance here too.
+  }
+  function showResults() {
+    phase = 'results';
+    stopTimer();
+    const correct = answers.filter(a => a.correct).length;
+    ui.accuracy.textContent = String(Math.round(correct / TOTAL * 100));
+    ui['correct-count'].textContent = `${TOTAL}問中 ${correct}問正解`;
+    ui['final-time'].textContent = formattedTime(elapsed);
+    ui['average-time'].textContent = `${(elapsed / TOTAL / 1000).toFixed(1)} 秒`;
+    ui['result-message'].textContent = correct === TOTAL ? '全問正解。この調子で、もう1セット。' : '答えを振り返って、次の10問へ。';
+    ui['review-body'].innerHTML = answers.map((a, i) => `<tr class="${a.correct ? '' : 'missed'}"><td class="row-number">${String(i + 1).padStart(2, '0')}</td><th scope="row">${a.a} <span class="table-times">×</span> ${a.b}</th><td>${a.value}</td><td class="correct-answer">${a.a * a.b}</td><td><span class="result-status ${a.correct ? 'good' : 'bad'}" aria-label="${a.correct ? '正解' : '不正解'}">${a.correct ? '✓' : '×'}</span></td></tr>`).join('');
+    showScreen('results');
+    ui.restart.focus({preventScroll: true});
+  }
+  function advance() {
+    if (phase !== 'checked') return;
+    if (index === TOTAL - 1) { showResults(); return; }
+    index++;
+    phase = 'answering';
+    renderQuestion();
+  }
+  ui['answer-form'].addEventListener('submit', e => {
+    e.preventDefault();
+    const now = performance.now();
+    if (now - lastActionAt < 250) return;
+    lastActionAt = now;
+    if (phase === 'answering') submit();
+    else if (phase === 'checked') advance();
+  });
+  ui.answer.addEventListener('input', () => {
+    ui['input-error'].textContent = '';
+    ui.answer.removeAttribute('aria-invalid');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && (e.repeat || e.isComposing)) e.preventDefault();
+  });
+  ui.start.addEventListener('click', start);
+  ui.restart.addEventListener('click', () => {
+    if (performance.now() - lastActionAt < 250) return;
+    start();
+  });
+})();
+</script></body>
+</html>
